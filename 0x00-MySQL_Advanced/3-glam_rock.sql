@@ -1,7 +1,10 @@
--- query to show bands and their lifespan from the day they formed till split
-SELECT band_name, split - formed 
-    AS lifespan 
-    FROM metal_bands 
-    WHERE split < 2023 OR split = 2022 
-    ORDER BY lifespan DESC;
+SELECT 
+    band_name, 
+    (IFNULL(split, 2022) - formed) AS lifespan
+FROM 
+    metal_bands
+WHERE 
+    style = 'Glam rock'   -- Filter for bands with 'Glam rock' style
+ORDER BY 
+    lifespan DESC;  -- Rank bands by lifespan in descending order
 
